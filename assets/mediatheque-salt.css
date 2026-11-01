@@ -1,0 +1,187 @@
+/* Médiathèque Claire */
+
+:root {
+	--mlt-size: 200px;
+	--mlt-check-a: #f0f0f1;
+	--mlt-check-b: #ffffff;
+}
+
+/* ---- Grille : colonnes à largeur réglable ---------------------------- */
+
+.attachments-browser ul.attachments {
+	display: grid !important;
+	grid-template-columns: repeat(auto-fill, minmax(var(--mlt-size), 1fr));
+	gap: 14px;
+	padding: 4px 4px 16px;
+}
+
+.attachments-browser ul.attachments > li.attachment {
+	width: auto !important;
+	float: none;
+	margin: 0;
+	padding: 0;
+}
+
+/* ---- Vignettes : image entière, sans recadrage ----------------------- */
+
+.attachments-browser .attachment-preview {
+	border-radius: 6px;
+	overflow: hidden;
+}
+
+.attachments-browser .attachment-preview.type-image {
+	background-color: var(--mlt-check-b);
+	background-image:
+		linear-gradient(45deg, var(--mlt-check-a) 25%, transparent 25%),
+		linear-gradient(-45deg, var(--mlt-check-a) 25%, transparent 25%),
+		linear-gradient(45deg, transparent 75%, var(--mlt-check-a) 75%),
+		linear-gradient(-45deg, transparent 75%, var(--mlt-check-a) 75%);
+	background-size: 16px 16px;
+	background-position: 0 0, 0 8px, 8px -8px, -8px 0;
+}
+
+.attachments-browser .attachment-preview.type-image .thumbnail {
+	opacity: 1;
+}
+
+.attachments-browser .attachment-preview.type-image .thumbnail:after {
+	box-shadow: none;
+}
+
+.attachments-browser .attachment-preview.type-image .thumbnail .centered {
+	position: absolute;
+	inset: 8px 8px 30px;
+	width: auto;
+	height: auto;
+	transform: none !important;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.mlt-hide-info .attachments-browser .attachment-preview.type-image .thumbnail .centered {
+	inset: 8px;
+}
+
+.attachments-browser .attachment-preview.type-image .thumbnail .centered img {
+	position: static !important;
+	transform: none !important;
+	width: auto !important;
+	height: auto !important;
+	max-width: 100% !important;
+	max-height: 100% !important;
+	object-fit: contain;
+}
+
+/* Pas de nom de fichier par-dessus les images */
+.attachments-browser .attachment-preview.type-image .filename {
+	display: none;
+}
+
+/* ---- Badges format / dimensions -------------------------------------- */
+
+.mlt-badge {
+	position: absolute;
+	top: 6px;
+	left: 6px;
+	z-index: 2;
+	padding: 2px 6px;
+	border-radius: 4px;
+	font: 600 10px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+	letter-spacing: .04em;
+	color: #fff;
+	background: #50575e;
+	pointer-events: none;
+}
+
+.mlt-badge--inline {
+	position: static;
+	display: inline-block;
+}
+
+.mlt-jpg  { background: #c2410c; }
+.mlt-png  { background: #2563eb; }
+.mlt-webp { background: #15803d; }
+.mlt-avif { background: #0f766e; }
+.mlt-svg  { background: #7c3aed; }
+.mlt-gif  { background: #db2777; }
+.mlt-heic { background: #a16207; }
+
+.mlt-info {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 2;
+	display: flex;
+	justify-content: space-between;
+	gap: 6px;
+	padding: 5px 8px;
+	font: 500 11px/1.3 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+	font-variant-numeric: tabular-nums;
+	color: #1d2327;
+	background: rgba(255, 255, 255, .92);
+	border-top: 1px solid #dcdcde;
+	white-space: nowrap;
+	overflow: hidden;
+	pointer-events: none;
+}
+
+.mlt-info b {
+	font-weight: 600;
+	color: #50575e;
+}
+
+.mlt-hide-info .mlt-info,
+.mlt-hide-info .attachments-browser .mlt-badge:not(.mlt-badge--inline) {
+	display: none;
+}
+
+/* ---- Barre de réglages ----------------------------------------------- */
+
+.mlt-controls {
+	display: inline-flex;
+	align-items: center;
+	gap: 10px;
+	margin: 11px 0 0 12px;
+	vertical-align: top;
+	font-size: 13px;
+}
+
+.mlt-controls label {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+}
+
+.mlt-controls input[type="range"] {
+	width: 110px;
+}
+
+.media-modal .mlt-controls {
+	margin-top: 0;
+}
+
+/* ---- Vue liste --------------------------------------------------------- */
+
+.upload-php .wp-list-table .media-icon {
+	width: 80px;
+}
+
+.upload-php .wp-list-table .media-icon img {
+	max-width: 80px;
+	max-height: 80px;
+	width: auto;
+	height: auto;
+}
+
+.upload-php .column-mlt_format {
+	width: 130px;
+}
+
+.mlt-col-dims,
+.mlt-col-size {
+	margin-top: 4px;
+	font-variant-numeric: tabular-nums;
+	color: #50575e;
+}
